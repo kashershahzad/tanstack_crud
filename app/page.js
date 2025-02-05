@@ -17,23 +17,14 @@ const getTodos = () => {
 
 const Page = () => {
 
-
-
-
   const [value, setValue] = useState('')
   const [editId, setEditId] = useState(null)
-
-
-
 
   const { data: todos, refetch, status } = useQuery({
     queryKey: ['todos'],
     queryFn: getTodos,
     initialData: [],
   })
-
-
-
 
   const { mutate } = useMutation({
     mutationFn: (updatedTodos) => {
@@ -42,11 +33,6 @@ const Page = () => {
     },
     onSuccess: () => refetch(),
   })
-
-
-
-
-
 
   const handleSubmit = () => {
     if (value.trim() === '') return
@@ -58,30 +44,18 @@ const Page = () => {
       )
       setEditId(null)
 
-
-
     } else {
       updatedTodos = [...todos, { id: Date.now(), value }]
     }
-
-
 
     mutate(updatedTodos)
     setValue('')
   }
 
-
-
-
-
-
-
   const handleDelete = (id) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id)
     mutate(updatedTodos)
   }
-
-
 
 
   const handleEdit = (id) => {
@@ -90,9 +64,7 @@ const Page = () => {
     setEditId(id)
   }
 
-
-
-
+  
   return (
     <div className="flex flex-col items-center mt-10 min-h-screen px-4">
       <div className="w-full max-w-lg bg-white shadow-lg rounded-lg p-6">
@@ -117,7 +89,7 @@ const Page = () => {
           </button>
         </div>
 
-        
+
 
         <div className="mt-5 space-y-3">
           {todos.length > 0 ? (
