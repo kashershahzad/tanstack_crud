@@ -19,14 +19,14 @@ const Page = () => {
   const [value, setValue] = useState('')
   const [editId, setEditId] = useState(null)
 
-  // Fetch todos
+
   const { data: todos, refetch, status } = useQuery({
     queryKey: ['todos'],
     queryFn: getTodos,
     initialData: [],
   })
 
-  // Mutation for updating local storage
+
   const { mutate } = useMutation({
     mutationFn: (updatedTodos) => {
       localStorage.setItem('todos', JSON.stringify(updatedTodos))
@@ -35,7 +35,7 @@ const Page = () => {
     onSuccess: () => refetch(),
   })
 
-  // Handle Add & Update
+
   const handleSubmit = () => {
     if (value.trim() === '') return
 
@@ -53,13 +53,13 @@ const Page = () => {
     setValue('')
   }
 
-  // Handle Delete
+
   const handleDelete = (id) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id)
     mutate(updatedTodos)
   }
 
-  // Handle Edit
+
   const handleEdit = (id) => {
     const todoToEdit = todos.find((todo) => todo.id === id)
     setValue(todoToEdit.value)
