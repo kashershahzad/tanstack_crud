@@ -16,8 +16,14 @@ const getTodos = () => {
 }
 
 const Page = () => {
+
+
+
+
   const [value, setValue] = useState('')
   const [editId, setEditId] = useState(null)
+
+
 
 
   const { data: todos, refetch, status } = useQuery({
@@ -25,6 +31,8 @@ const Page = () => {
     queryFn: getTodos,
     initialData: [],
   })
+
+
 
 
   const { mutate } = useMutation({
@@ -36,6 +44,10 @@ const Page = () => {
   })
 
 
+
+
+
+
   const handleSubmit = () => {
     if (value.trim() === '') return
 
@@ -45,13 +57,23 @@ const Page = () => {
         todo.id === editId ? { ...todo, value } : todo
       )
       setEditId(null)
+
+
+
     } else {
       updatedTodos = [...todos, { id: Date.now(), value }]
     }
 
+
+
     mutate(updatedTodos)
     setValue('')
   }
+
+
+
+
+
 
 
   const handleDelete = (id) => {
@@ -60,11 +82,16 @@ const Page = () => {
   }
 
 
+
+
   const handleEdit = (id) => {
     const todoToEdit = todos.find((todo) => todo.id === id)
     setValue(todoToEdit.value)
     setEditId(id)
   }
+
+
+  
 
   return (
     <div className="flex flex-col items-center mt-10 min-h-screen px-4">
