@@ -91,13 +91,13 @@ const Page = () => {
   }
 
 
-  
+
 
   return (
     <div className="flex flex-col items-center mt-10 min-h-screen px-4">
       <div className="w-full max-w-lg bg-white shadow-lg rounded-lg p-6">
         <h1 className="text-3xl font-semibold text-center text-blue-600 mb-4">Todo App</h1>
-        <p className="text-sm text-center text-gray-500 mb-4">Status: {status}</p>
+        {/* <p className="text-sm text-center text-gray-500 mb-4">Status: {status}</p> */}
 
         <div className="flex flex-col sm:flex-row items-center gap-3">
           <input
@@ -107,6 +107,8 @@ const Page = () => {
             onChange={(e) => setValue(e.target.value)}
             placeholder="Enter a task..."
           />
+
+
           <button
             className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md transition"
             onClick={handleSubmit}
@@ -114,6 +116,8 @@ const Page = () => {
             {editId !== null ? 'Update' : 'Add'}
           </button>
         </div>
+
+        
 
         <div className="mt-5 space-y-3">
           {todos.length > 0 ? (
